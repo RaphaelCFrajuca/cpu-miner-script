@@ -10,7 +10,12 @@ wallet=$1
 fi
 
 echo "Installing dependences.."
-sudo apt-get install screen build-essential automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 1>/dev/null 2>/dev/null
+sudo apt-get install screen build-essential automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 1>/dev/null 2>/dev/null || install=false
+if [ "$install" = false ]
+then
+echo "Error to install dependences, Aborting..."
+exit 1
+fi
 export MINERPATH=$HOME/miner
 mkdir $MINERPATH 1>/dev/null 2>/dev/null
 # CPUMINER: https://github.com/tpruvot/cpuminer-multi
@@ -20,9 +25,19 @@ git clone https://github.com/tpruvot/cpuminer-multi.git $MINERPATH > /dev/null
 echo "Compiling Miner.... (maybe this take a long time)"
 
 cd $MINERPATH && ./autogen.sh
-cd $MINERPATH && ./configure --with-crypto --with-curl CFLAGS="-march=native"
-cd $MINERPATH && make
+cd $MINERPATH && ./configure --with-crypto --with-curl CFLAGS="-march=native" || configure=false
+cd $MINERPATH && make || compile=false
+if [ "$configure" = false ]
+then
+echo "Error to configure source to build, Aborting..."
+exit 1
+fi
 
+if [ "$compile" = false ]
+then
+echo "Error to compile source, Aborting..."
+exit 1
+fi
 clear
 echo "Please Donate to: 19bQQhcv4qsGmnd7VVCXLe9rhGY6g45eH"
 echo "[01] YESCRYPT (ZPOOL)"
