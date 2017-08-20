@@ -52,7 +52,7 @@ if [ "$op" = 01 ]
 then
 echo "Initializing Mining in screen session... (YESCRYPT)"
 sleep 10
-cd $MINERPATH && screen ./cpuminer -a yescrypt -o stratum+tcp://yesscript.mine.zpool.ca:6233 -u $wallet --cpu-priority 5
+cd $MINERPATH && screen ./cpuminer -a yescrypt -o stratum+tcp://yescrypt.mine.zpool.ca:6233 -u $wallet --cpu-priority 5
 fi
 
 
@@ -60,7 +60,7 @@ if [ "$op" = 02 ]
 then
 echo "Initializing Mining in screen session... (NEOSCRYPT)"
 sleep 10
-cd $MINERPATH && screen ./cpuminer -a neoscrypt -o stratum+tcp://yesscript.mine.zpool.ca:4233 -u $wallet --cpu-priority 5
+cd $MINERPATH && screen ./cpuminer -a neoscrypt -o stratum+tcp://neoscrypt.mine.zpool.ca:4233 -u $wallet --cpu-priority 5
 fi
 
 
@@ -68,7 +68,7 @@ if [ "$op" = 03 ]
 then
 echo "Initializing Mining in screen session... (X11)"
 sleep 10
-cd $MINERPATH && screen ./cpuminer -a x11 -o stratum+tcp://yesscript.mine.zpool.ca:3533 -u $wallet --cpu-priority 5
+cd $MINERPATH && screen ./cpuminer -a x11 -o stratum+tcp://x11.mine.zpool.ca:3533 -u $wallet --cpu-priority 5
 fi
 
 
@@ -76,7 +76,7 @@ if [ "$op" = 04 ]
 then
 echo "Initializing Mining in screen session... (SCRYPT)"
 sleep 10
-cd $MINERPATH && screen ./cpuminer -a scrypt -o stratum+tcp://script.mine.zpool.ca:3433 -u $wallet --cpu-priority 5
+cd $MINERPATH && screen ./cpuminer -a scrypt -o stratum+tcp://scrypt.mine.zpool.ca:3433 -u $wallet --cpu-priority 5
 fi
 
 if [ "$op" = 05 ]
