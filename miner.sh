@@ -44,7 +44,8 @@ echo "[01] YESCRYPT (ZPOOL)"
 echo "[02] NEOSCRYPT (ZPOOL)"
 echo "[03] X11 (ZPOOL)"
 echo "[04] SCRYPT (ZPOOL)"
-echo "[05] Custom Pool"
+echo "[05] QUARK (ZPOOL)"
+echo "[06] Custom Pool"
 read -p "Select your option: " op
 
 
@@ -79,7 +80,15 @@ sleep 10
 cd $MINERPATH && screen ./cpuminer -a scrypt -o stratum+tcp://scrypt.mine.zpool.ca:3433 -u $wallet --cpu-priority 5
 fi
 
+
 if [ "$op" = 05 ]
+then
+echo "Initializing Mining in screen session... (QUARK)"
+sleep 10
+cd $MINERPATH && screen ./cpuminer -a quark -o stratum+tcp://quark.mine.zpool.ca:4033 -u $wallet --cpu-priority 5
+fi
+
+if [ "$op" = 06 ]
 then
 read -p "cd $MINERPATH && screen ./cpuminer " pool
 cd $MINERPATH && screen ./cpuminer $pool
